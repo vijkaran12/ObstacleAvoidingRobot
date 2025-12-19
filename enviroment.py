@@ -67,7 +67,7 @@ class Environment:
                 
                 attempts += 1
         
-        print(f"🏗️  Generated {len(self.obstacles)} obstacles")
+       
         return self.obstacles
     
     def create_goal(self):
@@ -88,7 +88,7 @@ class Environment:
             basePosition=self.goal_position
         )
         
-        print(f"🎯 Goal placed at: ({self.goal_position[0]:.1f}, {self.goal_position[1]:.1f})")
+       
         return self.goal_position
     
     def get_obstacle_positions(self):

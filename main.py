@@ -33,9 +33,7 @@ class AutonomousRobot:
         
     def setup_simulation(self):
         """Initialize PyBullet and load world."""
-        print(f"\n{'='*60}")
-        print(f"🚀 TRIAL {self.trial} - INITIALIZING SIMULATION")
-        print(f"{'='*60}\n")
+      
         
         # Connect to physics engine
         physicsClient = p.connect(p.GUI)
@@ -77,7 +75,7 @@ class AutonomousRobot:
                 if name == joint_name:
                     self.joint_ids[key] = i
         
-        print(f"🤖 Robot loaded with joints: {self.joint_ids}")
+    
         
         # Initialize sensors and modules
         goal_marker_id = self.env.get_goal_marker_id()
@@ -91,9 +89,6 @@ class AutonomousRobot:
     
     def run_navigation(self, goal_pos, max_steps=10000):
         
-        print(f"\n🏃 Starting navigation to goal ({goal_pos[0]:.1f}, {goal_pos[1]:.1f})")
-        print(f"📡 Sensors: {len(SENSOR_ANGLES)} rays | 🗺️  Grid: {GRID_WIDTH}x{GRID_HEIGHT}")
-        print(f"🎯 Goal threshold: {GOAL_REACH_DISTANCE}m\n")
         
         step_count = 0
         path_planned = False
@@ -156,7 +151,6 @@ class AutonomousRobot:
                 # Check if goal reached
                 if state == "REACHED":
                     self.metrics.mark_goal_reached()
-                    print(f"\n🎉 Goal reached at step {step_count}!")
                     time.sleep(2)  # Pause to see result
                     break
                 
@@ -183,19 +177,7 @@ class AutonomousRobot:
 
 
 def main():
-    """Main entry point."""
-    print("""
-╔═══════════════════════════════════════════════════════════════╗
-║   AUTONOMOUS MOBILE ROBOT NAVIGATION SYSTEM                   ║
-║   - Dynamic Obstacle Generation                               ║
-║   - Ray-based Sensing (5 sensors)                             ║
-║   - Occupancy Grid Mapping                                    ║
-║   - A* Global Path Planning                                   ║
-║   - Reactive Local Obstacle Avoidance                         ║
-║   - Odometry-based Localization                               ║
-║   - Performance Evaluation                                    ║
-╚═══════════════════════════════════════════════════════════════╝
-    """)
+  
     
     # Run single trial (can be extended for multiple trials)
     trial_number = 1

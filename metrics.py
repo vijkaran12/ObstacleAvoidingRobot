@@ -93,17 +93,7 @@ class PerformanceMetrics:
         """Print formatted performance summary."""
         summary = self.get_summary(goal_pos, start_pos)
         
-        print("\n" + "="*60)
-        print(f"🏁 TRIAL {self.trial_number} - PERFORMANCE SUMMARY")
-        print("="*60)
-        print(f"✅ Goal Reached: {summary['goal_reached']}")
-        print(f"⏱️  Completion Time: {summary['completion_time']:.2f}s")
-        print(f"📏 Total Distance: {summary['total_distance']:.2f}m")
-        print(f"💥 Collisions: {summary['collision_count']}")
-        print(f"📊 Path Efficiency: {summary['efficiency']:.2%}")
-        print(f"📍 Avg Localization Error: {summary['avg_localization_error']:.3f}m")
-        print(f"🧭 Avg Heading Error: {summary['avg_heading_error']:.1f}°")
-        print("="*60 + "\n")
+       
     
     def save_to_csv(self, goal_pos, start_pos, filename=RESULTS_FILE):
         """Save metrics to CSV file."""
@@ -124,4 +114,4 @@ class PerformanceMetrics:
             
             writer.writerow(summary)
         
-        print(f"💾 Results saved to {filename}")
+        

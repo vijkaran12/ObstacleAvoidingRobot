@@ -16,16 +16,7 @@ class RaySensor:
         self.sensor_readings = {}
         
     def read_distance(self, angle, length=RAY_LENGTH):
-        """
-        Cast a ray at given angle relative to robot's heading.
         
-        Args:
-            angle: Angle in radians relative to robot's forward direction
-            length: Maximum ray length in meters
-            
-        Returns:
-            Distance to nearest obstacle, or length if nothing detected
-        """
         try:
             pos, orn = p.getBasePositionAndOrientation(self.robot_id)
         except p.error:
@@ -61,12 +52,7 @@ class RaySensor:
         return hit_fraction * length
     
     def read_all_sensors(self):
-        """
-        Read all configured sensors.
         
-        Returns:
-            Dictionary of sensor readings {name: distance}
-        """
         self.sensor_readings = {}
         for name, angle in SENSOR_ANGLES.items():
             self.sensor_readings[name] = self.read_distance(angle)

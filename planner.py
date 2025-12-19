@@ -23,14 +23,14 @@ class AStarPlanner:
         goal_grid = self.grid.world_to_grid(goal_pos[0], goal_pos[1])
         
         if start_grid is None or goal_grid is None:
-            print("⚠️ Start or goal out of grid bounds")
+           
             return None
         
         # Run A* search
         grid_path = self._astar_search(start_grid, goal_grid)
         
         if grid_path is None:
-            print("⚠️ No path found")
+           
             return None
         
         # Convert grid path to world coordinates
@@ -39,7 +39,7 @@ class AStarPlanner:
             world_pos = self.grid.grid_to_world(grid_pos[0], grid_pos[1])
             self.path.append(world_pos)
         
-        print(f"✅ Path planned with {len(self.path)} waypoints")
+       
         return self.path
     
     def _astar_search(self, start, goal):
