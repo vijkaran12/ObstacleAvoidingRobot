@@ -1,15 +1,4 @@
-"""
-Main simulation loop integrating all modules.
 
-Autonomous Mobile Robot Navigation System
-- Modular architecture with separate concerns
-- Ray-based sensing for obstacle detection  
-- Occupancy grid mapping
-- A* global path planning
-- Reactive local obstacle avoidance
-- Odometry-based localization
-- Performance evaluation across trials
-"""
 
 import pybullet as p
 import pybullet_data
@@ -98,16 +87,10 @@ class AutonomousRobot:
         self.planner = AStarPlanner(self.grid)
         self.controller = RobotController(self.robot_id, self.joint_ids, self.planner)
         
-        print("✅ All modules initialized")
+    
     
     def run_navigation(self, goal_pos, max_steps=10000):
-        """
-        Run main navigation loop.
         
-        Args:
-            goal_pos: Goal position (x, y, z)
-            max_steps: Maximum simulation steps
-        """
         print(f"\n🏃 Starting navigation to goal ({goal_pos[0]:.1f}, {goal_pos[1]:.1f})")
         print(f"📡 Sensors: {len(SENSOR_ANGLES)} rays | 🗺️  Grid: {GRID_WIDTH}x{GRID_HEIGHT}")
         print(f"🎯 Goal threshold: {GOAL_REACH_DISTANCE}m\n")

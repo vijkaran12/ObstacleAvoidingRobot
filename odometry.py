@@ -30,12 +30,7 @@ class Odometry:
         self.true_theta = 0.0
         
     def update(self, dt):
-        """
-        Update odometry estimate based on wheel encoder readings.
-        
-        Args:
-            dt: Time step in seconds
-        """
+       
         # Get left and right wheel positions (average of front and rear)
         left_pos = (p.getJointState(self.robot_id, self.joint_ids['FL'])[0] +
                    p.getJointState(self.robot_id, self.joint_ids['RL'])[0]) / 2
@@ -72,12 +67,7 @@ class Odometry:
         self.true_theta = p.getEulerFromQuaternion(orn)[2]
     
     def get_pose(self):
-        """
-        Get current pose estimate.
-        
-        Returns:
-            Tuple of (x, y, theta)
-        """
+      
         return (self.x, self.y, self.theta)
     
     def get_position(self):

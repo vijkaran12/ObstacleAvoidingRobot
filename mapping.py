@@ -9,17 +9,10 @@ from config import *
 
 
 class OccupancyGrid:
-    """Occupancy grid map for environment representation."""
+   
     
     def __init__(self, width, height, resolution):
-        """
-        Initialize occupancy grid.
-        
-        Args:
-            width: Width in cells
-            height: Height in cells
-            resolution: Meters per cell
-        """
+       
         self.width = width
         self.height = height
         self.resolution = resolution
@@ -34,15 +27,7 @@ class OccupancyGrid:
         self.update_count = 0
         
     def world_to_grid(self, x, y):
-        """
-        Convert world coordinates to grid indices.
-        
-        Args:
-            x, y: World coordinates in meters
-            
-        Returns:
-            Tuple of (grid_x, grid_y) or None if out of bounds
-        """
+       
         grid_x = int((x - self.origin_x) / self.resolution)
         grid_y = int((y - self.origin_y) / self.resolution)
         
@@ -57,13 +42,7 @@ class OccupancyGrid:
         return (x, y)
     
     def update_from_sensors(self, robot_pos, sensor_readings):
-        """
-        Update occupancy grid based on sensor readings.
-        
-        Args:
-            robot_pos: Robot position (x, y)
-            sensor_readings: Dictionary of sensor readings
-        """
+       
         self.update_count += 1
         
         # Only update every N frames for performance
@@ -103,11 +82,7 @@ class OccupancyGrid:
                     self.grid[oy, ox] = min(1.0, self.grid[oy, ox] + 0.3)
     
     def _bresenham_line(self, start, end):
-        """
-        Bresenham's line algorithm for ray tracing.
-        
-        Returns list of grid cells along the line from start to end.
-        """
+       
         x0, y0 = start
         x1, y1 = end
         

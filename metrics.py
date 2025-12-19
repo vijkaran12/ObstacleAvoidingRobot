@@ -28,14 +28,7 @@ class PerformanceMetrics:
         self.localization_errors = []
         
     def update(self, robot_pos, robot_vel, collision_detected=False):
-        """
-        Update metrics based on current state.
         
-        Args:
-            robot_pos: Current position (x, y)
-            robot_vel: Current velocity
-            collision_detected: Whether collision occurred
-        """
         # Track distance traveled
         if self.prev_position:
             dx = robot_pos[0] - self.prev_position[0]
@@ -60,12 +53,7 @@ class PerformanceMetrics:
             self.completion_time = time.time() - self.start_time
     
     def calculate_efficiency(self, goal_pos, start_pos):
-        """
-        Calculate path efficiency.
         
-        Returns:
-            Efficiency ratio (optimal distance / actual distance)
-        """
         if self.total_distance == 0:
             return 0.0
         
@@ -77,12 +65,7 @@ class PerformanceMetrics:
         return optimal_distance / self.total_distance
     
     def get_summary(self, goal_pos, start_pos):
-        """
-        Get complete performance summary.
-        
-        Returns:
-            Dictionary of all metrics
-        """
+       
         efficiency = self.calculate_efficiency(goal_pos, start_pos)
         
         # Calculate average localization error

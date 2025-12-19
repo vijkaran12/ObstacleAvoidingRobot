@@ -29,18 +29,7 @@ class RobotController:
         self.replan_counter = 0
         
     def compute_control(self, sensor_readings, robot_pos, robot_heading, goal_pos):
-        """
-        Compute wheel velocities based on current state and sensor readings.
         
-        Args:
-            sensor_readings: Dictionary of sensor distances
-            robot_pos: Current position (x, y)
-            robot_heading: Current heading in radians
-            goal_pos: Goal position (x, y)
-            
-        Returns:
-            Tuple of (left_speed, right_speed, state_name)
-        """
         # Extract sensor readings
         front = sensor_readings.get('front', RAY_LENGTH)
         front_left = sensor_readings.get('front_left', RAY_LENGTH)
@@ -56,7 +45,6 @@ class RobotController:
         
         if dist_to_goal < GOAL_REACH_DISTANCE and self.state != self.STATE_REACHED:
             self.state = self.STATE_REACHED
-            print(f"\n🎉 GOAL REACHED! Distance: {dist_to_goal:.2f}m")
             return (0, 0, "REACHED")
         
         # Get target direction (from A* path or direct to goal)
@@ -112,7 +100,7 @@ class RobotController:
                 # Commit to turn direction
                 self.committed_turn_dir = 1 if left_clearance > right_clearance else -1
                 
-                print(f"🚧 Obstacle! Turning {'LEFT' if self.committed_turn_dir > 0 else 'RIGHT'}")
+              
                 
                 vx = 0
                 vtheta = 0
@@ -132,10 +120,10 @@ class RobotController:
             
             if self.turn_steps >= MIN_TURN_DURATION and path_clear:
                 self.state = self.STATE_FORWARD
-                print(f"✅ Path clear, resuming forward")
+               
             elif self.turn_steps >= MAX_TURN_DURATION:
                 self.state = self.STATE_FORWARD
-                print(f"⚠️ Turn timeout, forcing forward")
+                
             
             state_name = "TURN"
         
@@ -149,12 +137,7 @@ class RobotController:
         return (left_speed, right_speed, state_name)
     
     def _get_target_angle(self, robot_pos, goal_pos, robot_heading):
-        """
-        Get target angle considering global plan waypoints.
-        
-        Returns:
-            Target angle in radians
-        """
+      
         # Replan periodically or if no path
         self.replan_counter += 1
         if self.replan_counter > 480 or not self.current_waypoint:  # Every 2 seconds

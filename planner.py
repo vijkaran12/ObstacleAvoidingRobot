@@ -17,16 +17,7 @@ class AStarPlanner:
         self.path = []
         
     def plan(self, start_pos, goal_pos):
-        """
-        Plan path from start to goal using A* algorithm.
         
-        Args:
-            start_pos: Start position in world coordinates (x, y)
-            goal_pos: Goal position in world coordinates (x, y)
-            
-        Returns:
-            List of waypoints in world coordinates, or None if no path found
-        """
         # Convert to grid coordinates
         start_grid = self.grid.world_to_grid(start_pos[0], start_pos[1])
         goal_grid = self.grid.world_to_grid(goal_pos[0], goal_pos[1])
@@ -52,12 +43,7 @@ class AStarPlanner:
         return self.path
     
     def _astar_search(self, start, goal):
-        """
-        A* search algorithm implementation.
-        
-        Returns:
-            List of grid coordinates forming path, or None if no path
-        """
+       
         # Priority queue: (f_score, counter, node)
         open_set = []
         counter = 0
@@ -114,16 +100,7 @@ class AStarPlanner:
         return path
     
     def get_next_waypoint(self, current_pos, lookahead_distance=2.0):
-        """
-        Get next waypoint on path within lookahead distance.
-        
-        Args:
-            current_pos: Current robot position (x, y)
-            lookahead_distance: Distance to look ahead on path
-            
-        Returns:
-            Next waypoint (x, y) or None
-        """
+    
         if not self.path:
             return None
         
